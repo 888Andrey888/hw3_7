@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hw3_7.BundleKeys.PERS_KEY
 import com.example.hw3_7.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var navArgs: DetailsFragmentArgs
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,15 +20,15 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initView()
     }
 
-    private fun init() = with(binding) {
-        val pers = arguments?.getSerializable(PERS_KEY) as PersModel
-        pers.apply {
-            imgCharacter.loadImage(imageUrl)
-            tvState.text = state
-            tvName.text = name
+    private fun initView() = with(binding) {
+        arguments?.let {
+            navArgs = DetailsFragmentArgs.fromBundle(it)
         }
+            imgCharacter.loadImage(navArgs.pers.imageUrl)
+            tvState.text = navArgs.pers.state
+            tvName.text = navArgs.pers.name
     }
 }

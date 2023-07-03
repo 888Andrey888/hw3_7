@@ -9,10 +9,19 @@
         android:id="@+id/persFragment"
         android:name="com.example.hw3_7.PersFragment"
         android:label="fragment_pers"
-        tools:layout="@layout/fragment_pers" />
+        tools:layout="@layout/fragment_pers" >
+        <action
+            android:id="@+id/action_persFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.hw3_7.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details">
+
+        <argument
+            android:name="pers"
+            app:argType="com.example.hw3_7.PersModel"/>
+    </fragment>
 </navigation>
